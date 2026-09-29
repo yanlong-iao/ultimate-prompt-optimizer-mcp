@@ -1,0 +1,32 @@
+# promptfoo-style config understood by evaluate_prompt_preview (configPath: examples/promptfooconfig.yaml)
+description: 量化面试陪练 — 回复格式回归测试
+prompts:
+  - file://../../量化面试陪练_优化版.md     # 路径相对本文件（这里指向 "AI prompt agent" 文件夹里的那份）；也可以直接写字符串
+promptMode: system                          # 扩展字段：把提示词作为 system 消息，vars.input 作为用户消息
+providers:
+  - deepseek:deepseek-flash                 # 冒号后面是模型名；可写多个做模型对比
+defaultTest:
+  assert:
+    - type: not-is-refusal
+    - type: max-length
+      value: 1500
+      weight: 0.5
+tests:
+  - description: 开场应只出一道题并停下
+    vars:
+      input: 开始吧，中等难度
+    assert:
+      - type: icontains-any
+        value: ["【题目】", "题目"]
+      - type: not-contains
+        value: "【面试口述版最快解法】"          # 用户还没作答，不应给解法
+  - description: 作答后按四要素反馈
+    vars:
+      input: "题目：掷两枚骰子点数和为7的概率？我的答案：1/6"
+    assert:
+      - type: contains-all
+        value: ["【判定】", "【关键技巧】"]
+      - type: llm-rubric
+        value: 判定为正确，并给出 3-6 句可口述的最快解法，没有长篇推导
+        metric: 反馈质量
+  - file://tests.csv                           # 也可以从 CSV 批量读取

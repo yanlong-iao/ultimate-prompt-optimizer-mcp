@@ -1,0 +1,58 @@
+{
+  "name": "ultimate-prompt-optimizer-mcp",
+  "version": "0.3.0",
+  "description": "MCP server for prompt engineering: candidate prompts, LangGPT structuring, template-based iterative optimization, promptfoo-style evaluation and DSPy-style score-driven optimization. Works with any OpenAI-compatible LLM (DeepSeek, OpenAI, Ollama…).",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "prompt-engineering",
+    "llm",
+    "langgpt",
+    "evaluation",
+    "dspy",
+    "promptfoo",
+    "deepseek"
+  ],
+  "author": "Yanlong Liao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanlong-iao/ultimate-prompt-optimizer-mcp.git"
+  },
+  "homepage": "https://github.com/yanlong-iao/ultimate-prompt-optimizer-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/yanlong-iao/ultimate-prompt-optimizer-mcp/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ultimate-prompt-optimizer-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "smoke": "npm run build && tsx test/smoke.ts",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "ajv": "^8.20.0",
+    "dotenv": "^17.2.0",
+    "yaml": "^2.9.1",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

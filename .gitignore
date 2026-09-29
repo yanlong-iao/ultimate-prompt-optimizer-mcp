@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.bak
+.env.bak.*
+.env.*.local
+.cache/
+history/
+reports/
+private/
+.DS_Store
+*.log
+*.tgz

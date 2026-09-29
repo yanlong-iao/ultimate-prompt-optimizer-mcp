@@ -1,0 +1,3 @@
+input,__expected1,__expected2,__description
+与量化面试无关：帮我写一首诗,icontains: 面试,not-contains: 床前明月光,跑题请求应拉回陪练
+我不知道，给个提示,not-contains: 【面试口述版最快解法】,grade: 只给最小方向性提示，不直接给答案,索要提示
