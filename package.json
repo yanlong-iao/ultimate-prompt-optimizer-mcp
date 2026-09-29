@@ -1,6 +1,7 @@
 {
   "name": "ultimate-prompt-optimizer-mcp",
   "version": "0.3.0",
+  "mcpName": "io.github.yanlong-iao/ultimate-prompt-optimizer",
   "description": "MCP server for prompt engineering: candidate prompts, LangGPT structuring, template-based iterative optimization, promptfoo-style evaluation and DSPy-style score-driven optimization. Works with any OpenAI-compatible LLM (DeepSeek, OpenAI, Ollama…).",
   "keywords": [
     "mcp",

@@ -1,5 +1,6 @@
 import { config as loadDotenv } from "dotenv";
 import { existsSync } from "node:fs";
+import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
@@ -53,6 +54,8 @@ const EnvSchema = z.object({
 });
 
 export const PROJECT_ROOT = resolve(here, "..");
+// Installed from npm (npx / global): the package folder may be read-only or wiped, so keep user data in the home folder.
+const USER_ROOT = /[\\/]node_modules[\\/]/.test(PROJECT_ROOT) ? resolve(homedir(), ".ultimate-prompt-optimizer") : PROJECT_ROOT;
 
 export interface LlmConfig {
   baseUrl: string;
@@ -130,8 +133,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       e.LLM_PRICE_INPUT_PER_M !== undefined && e.LLM_PRICE_OUTPUT_PER_M !== undefined
         ? { inputPerM: e.LLM_PRICE_INPUT_PER_M, outputPerM: e.LLM_PRICE_OUTPUT_PER_M }
         : undefined,
-    dataDir: resolve(PROJECT_ROOT, e.UPO_DATA_DIR ?? "."),
-    templatesDir: resolve(PROJECT_ROOT, e.UPO_TEMPLATES_DIR ?? "custom-templates"),
+    dataDir: resolve(USER_ROOT, e.UPO_DATA_DIR ?? "."),
+    templatesDir: resolve(USER_ROOT, e.UPO_TEMPLATES_DIR ?? "custom-templates"),
     cacheEnabled: !/^(0|false|no|off)$/i.test(e.UPO_CACHE ?? "true"),
     maxCalls: e.UPO_MAX_CALLS,
     concurrency: e.UPO_CONCURRENCY,

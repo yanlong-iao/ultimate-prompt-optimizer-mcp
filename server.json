@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.yanlong-iao/ultimate-prompt-optimizer",
+  "title": "Ultimate Prompt Optimizer",
+  "description": "Prompt engineering workbench: candidate prompts, LangGPT structuring, iterative optimization, promptfoo-style evals, DSPy-style search.",
+  "repository": {
+    "url": "https://github.com/yanlong-iao/ultimate-prompt-optimizer-mcp",
+    "source": "github"
+  },
+  "version": "0.3.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "ultimate-prompt-optimizer-mcp",
+      "version": "0.3.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "LLM_API_KEY", "description": "API key for your OpenAI-compatible provider (optional for a localhost endpoint such as Ollama)", "isRequired": true, "isSecret": true, "format": "string" },
+        { "name": "LLM_BASE_URL", "description": "OpenAI-compatible base URL, e.g. https://api.deepseek.com or http://localhost:11434/v1", "isRequired": false, "format": "string", "default": "https://api.openai.com/v1" },
+        { "name": "LLM_MODEL", "description": "Model id used by every tool, e.g. deepseek-flash", "isRequired": false, "format": "string", "default": "gpt-4o-mini" },
+        { "name": "JUDGE_MODEL", "description": "Optional stronger model for graders and the pairwise judge", "isRequired": false, "format": "string" },
+        { "name": "UPO_MAX_CALLS", "description": "Hard cap on API calls per tool run", "isRequired": false, "format": "number", "default": "80" }
+      ]
+    }
+  ]
+}
